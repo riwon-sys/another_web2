@@ -1,0 +1,184 @@
+# 📘 나만의 주석 버전 노트
+
+## 1. 필수SQL.txt
+
+-- =======================================================================================
+-- ✅ DDL (Data Definition Language) : 데이터베이스 구조 정의어
+-- =======================================================================================
+
+CREATE DATABASE DB명;          
+-- [내 메모] 새로운 데이터베이스 만들기. 프로젝트 시작 시 자주 씀.
+
+DROP DATABASE DB명;            
+-- [내 메모] DB 삭제. ⚠️ 실무에서는 웬만하면 사용 금지. 자료 통째로 날아감.
+
+DROP DATABASE IF EXISTS DB명;  
+-- [내 메모] 안전 장치. DB가 존재할 때만 삭제됨.
+
+
+-- =======================================================================================
+-- ✅ DML (Data Manipulation Language) : 데이터베이스 조작어
+-- =======================================================================================
+
+-- INSERT : 데이터 넣기
+INSERT INTO 테이블명 VALUES(값1, 값2, 값3);
+-- [내 메모] 테이블 모든 속성 순서대로 값 넣을 때 사용.
+
+INSERT INTO 테이블명(속성명1, 속성명2) VALUES(값1, 값2);
+-- [내 메모] 특정 컬럼만 선택해서 넣기 가능.
+
+INSERT INTO 테이블명(속성명1, 속성명2) 
+VALUES(값1, 값2), (값3, 값4);
+-- [내 메모] 여러 개 레코드 한 번에 삽입 가능.
+
+-- SELECT : 데이터 조회
+SELECT * FROM 테이블명;
+-- [내 메모] * 은 모든 칼럼 불러오기. 실무에서는 성능 문제 때문에 지양.
+
+SELECT 속성명1, 속성명2 FROM 테이블명;
+-- [내 메모] 필요한 컬럼만 조회하는 게 베스트.
+
+SELECT * FROM 테이블명 WHERE 조건식;
+-- [내 메모] WHERE 필수! 조건 안 쓰면 전체 다 나옴 ⚠️
+
+-- UPDATE : 데이터 수정
+UPDATE 테이블명 SET 속성명=새값;
+-- [내 메모] 조건절 없으면 테이블 전체가 수정됨. 조심!
+
+UPDATE 테이블명 SET 속성명=새값 WHERE 조건식;
+-- [내 메모] 특정 행만 업데이트할 때 필수.
+
+UPDATE 테이블명 SET 속성1=값1, 속성2=값2 WHERE 조건식;
+-- [내 메모] 여러 필드 동시에 업데이트 가능.
+
+-- DELETE : 데이터 삭제
+DELETE FROM 테이블명;
+-- [내 메모] 조건절 안 쓰면 전체 데이터가 삭제됨 ⚠️
+
+DELETE FROM 테이블명 WHERE 조건식;
+-- [내 메모] 특정 조건 맞는 데이터만 삭제.
+
+
+## 2. 자주사용되는어노테이션.txt
+
+@SpringBootApplication 
+// [내 메모] Spring Boot 프로젝트의 시작점. main() 함수에 달아둠.
+
+@Controller          
+// [내 메모] HTML 반환할 때 사용. 뷰 템플릿과 연결.
+
+@RestController      
+// [내 메모] JSON 반환. API 만들 때 무조건 사용!
+
+@RequestMapping("/board")      
+// [내 메모] 공통 URL 설정. 클래스 위에 붙여 사용.
+
+@PostMapping("/save")         
+// [내 메모] POST 요청 처리. 주로 insert/생성용.
+
+@GetMapping("/list")          
+// [내 메모] GET 요청 처리. 주로 조회용.
+
+@PutMapping("/update")        
+// [내 메모] PUT 요청 처리. 수정용.
+
+@DeleteMapping("/delete")     
+// [내 메모] DELETE 요청 처리. 삭제용.
+
+@ResponseBody        
+// [내 메모] JSON 응답. RestController에 이미 포함되어 있어서 보통 생략 가능.
+
+@RequestParam("id")  
+// [내 메모] query string, form-data 값 매핑.
+
+@RequestBody         
+// [내 메모] JSON → 자바 객체 자동 변환.
+
+@ModelAttribute      
+// [내 메모] form-data, query string 매핑. DTO 객체로 받을 때 자주 씀.
+
+@Autowired           
+// [내 메모] 스프링 컨테이너에서 객체 자동 주입. 강력하지만 남용 주의.
+
+@Service            
+// [내 메모] 비즈니스 로직 담당 클래스.
+
+@Mapper             
+// [내 메모] 인터페이스에 붙여 SQL 매핑 기능 추가.
+
+@Insert, @Select, @Update, @Delete
+// [내 메모] MyBatis SQL 매핑용.
+
+@Options(useGeneratedKeys = true, keyProperty = "id")
+// [내 메모] auto_increment PK값을 insert 후 DTO에 자동으로 넣어줌.
+
+
+## 3. 자바스크립트필수문법.txt
+
+const a = 10; 
+// [내 메모] 상수. 값 변경 불가.
+
+let b = 20; 
+// [내 메모] 변수. 값 변경 가능.
+
+var c = 30; 
+// [내 메모] 옛날 방식. 중복 선언 가능 → 버그 원인 ⚠️
+
+function fun1(p1, p2) { return p1+p2; }
+// [내 메모] 전통 방식.
+
+const fun2 = (p1, p2) => p1+p2;
+// [내 메모] 최신 방식. React에서 많이 사용.
+
+const user = { name:"리원", age:25 };
+console.log(user.name);  
+// [내 메모] 점(.)으로 접근.
+
+const arr = [1,2,3];
+console.log(arr[0]); 
+// [내 메모] 배열 인덱스 0부터 시작.
+
+const newArr = [...arr, 4,5];
+// [내 메모] 기존 배열에 값 추가해서 새 배열 생성.
+
+const {name, age} = user;
+// [내 메모] 객체 속성을 변수로 쉽게 꺼내기.
+
+const msg = `안녕하세요 ${user.name}님`;
+// [내 메모] 문자열 안에서 변수 ${} 로 바로 넣을 수 있음.
+
+
+## 4. 반복문.txt
+
+// Java
+for(int i=0; i<list.size(); i++){
+    System.out.println(list.get(i));
+}
+// [내 메모] 전통적인 for문. 인덱스 직접 제어 가능.
+
+for(String item : list){
+    System.out.println(item);
+}
+// [내 메모] 향상된 for문. 배열/리스트 원소 하나씩 꺼낼 때.
+
+list.stream().forEach(i -> System.out.println(i));
+// [내 메모] stream forEach. 반환값 없음. 단순 반복.
+
+list.stream().map(i -> i+"!!").forEach(System.out::println);
+// [내 메모] map → 값 가공, forEach → 출력.
+
+// JavaScript
+for(let i=0; i<arr.length; i++){ console.log(arr[i]); }
+// [내 메모] 기본 for문. 인덱스로 접근.
+
+for(let i of arr){ console.log(i); }
+// [내 메모] for-of : 배열 원소 직접 꺼냄.
+
+arr.forEach(i => console.log(i));
+// [내 메모] 반환값 없음. 단순 반복.
+
+const doubled = arr.map(i => i*2);
+// [내 메모] map : 새로운 배열 반환. React JSX에서 많이 씀.
+
+const filtered = arr.filter(i => i>10);
+// [내 메모] 조건식 맞는 값만 반환.
