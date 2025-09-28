@@ -4,9 +4,9 @@
 // - Controller에서 넘어온 요청을 처리하고 Repository를 통해 DB 접근
 // - 중간에서 "로직"을 구현하는 핵심 계층
 // ========================================================================
-package example.day03._MVC2_3TIRE._service;
+package example.day03._01MVC2_3TIRE._service;
 
-import example.day03._MVC2_3TIRE._model._respository.MvcRepository;
+import example.day03._01MVC2_3TIRE._model._respository.MvcRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

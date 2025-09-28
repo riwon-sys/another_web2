@@ -4,9 +4,9 @@
 // - URL과 메서드를 매핑해서 요청을 처리
 // - 내부적으로는 Service를 호출해서 로직 실행 후 결과 반환
 // ========================================================================
-package example.day03._MVC2_3TIRE._controller;
+package example.day03._01MVC2_3TIRE._controller;
 
-import example.day03._MVC2_3TIRE._service.MvcService;
+import example.day03._01MVC2_3TIRE._service.MvcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 

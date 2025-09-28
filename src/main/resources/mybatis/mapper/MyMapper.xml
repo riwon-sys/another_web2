@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+  ✅ namespace = 인터페이스 FQN(풀패키지명)과 반드시 동일
+  example.day03._02MVC2_MYBATIS._model.mapper.MyMapper
+-->
+<mapper namespace="example.day03._02MVC2_MYBATIS._model.mapper.MyMapper">
+
+    <!--
+      ✅ CREATE
+      - useGeneratedKeys / keyProperty 로 AUTO_INCREMENT 값을 DTO.id에 되돌려 받습니다.
+      - user 는 일부 DB에서 예약어 충돌이 있을 수 있어, 백틱(`) 사용을 권장합니다.
+    -->
+    <insert id="save"
+            parameterType="example.day03._02MVC2_MYBATIS._model.dto.MyDto"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `user` (name, age)
+        VALUES (#{name}, #{age})
+    </insert>
+
+    <!-- ✅ READ ALL -->
+    <select id="findAll"
+            resultType="example.day03._02MVC2_MYBATIS._model.dto.MyDto">
+        SELECT id, name, age
+        FROM `user`
+        ORDER BY id DESC
+    </select>
+
+    <!-- ✅ READ ONE -->
+    <select id="findById"
+            parameterType="int"
+            resultType="example.day03._02MVC2_MYBATIS._model.dto.MyDto">
+        SELECT id, name, age
+        FROM `user`
+        WHERE id = #{id}
+    </select>
+
+    <!-- ✅ UPDATE -->
+    <update id="update"
+            parameterType="example.day03._02MVC2_MYBATIS._model.dto.MyDto">
+        UPDATE `user`
+        SET name = #{name},
+            age  = #{age}
+        WHERE id = #{id}
+    </update>
+
+    <!-- ✅ DELETE -->
+    <delete id="deleteById" parameterType="int">
+        DELETE FROM `user`
+        WHERE id = #{id}
+    </delete>
+
+</mapper>

@@ -3,7 +3,7 @@
 // - 데이터를 담는 그릇 역할
 // - DB와 직접 연결되는 것이 아니라, Controller ↔ Service ↔ Repository 사이에서 전달됨
 // ========================================================================
-package example.day03._MVC2_3TIRE._model._dto;
+package example.day03._01MVC2_3TIRE._model._dto;
 
 public class MvcDto {
     // 현재는 비어 있지만, 나중에 게시판 글번호, 제목, 내용 같은 필드를 넣을 수 있음

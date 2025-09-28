@@ -1,0 +1,94 @@
+<!-- =======================================================================================
+    [Day05] 학생 관리 단일 화면 | rw 25-09-26 리팩토링
+    - 정적 경로 : /day05/day05.html
+    - API 연동 : /day05/students  (강사 규약)
+    - 사용 라이브러리: axios
+======================================================================================= -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>Day05 - Students</title>
+    <!-- [A] axios 로드 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        /* [B] 기본 스타일 */
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 10px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        h2 { margin-top: 28px; }
+        input { padding: 6px; }
+        .row { display: flex; gap: 8px; margin: 6px 0; flex-wrap: wrap; }
+        button { padding: 6px 10px; cursor: pointer; }
+        .muted { color:#777; font-size:12px; }
+
+        /* [C] 숫자 input 스피너(↑↓) 제거 + 브라우저 호환 */
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number] {
+            -moz-appearance: textfield;  /* Firefox */
+            appearance: textfield;       /* 표준 */
+        }
+    </style>
+</head>
+<body>
+<!-- [D] 타이틀 -->
+<h1>Day05 학생 관리</h1>
+
+<!-- [E] 등록 -->
+<h2>등록</h2>
+<div class="row">
+    <input id="name" placeholder="이름" />
+    <input id="kor"  type="number" inputmode="numeric" step="1" placeholder="국어" />
+    <input id="math" type="number" inputmode="numeric" step="1" placeholder="수학" />
+    <button onclick="save()">등록</button>
+</div>
+
+<!-- [F] 목록 -->
+<h2>목록 <span class="muted">(자동 새로고침: 등록/수정/삭제 후)</span></h2>
+<button onclick="findAll()">새로고침</button>
+<table>
+    <thead>
+    <tr><th>sno</th><th>name</th><th>kor</th><th>math</th><th>액션</th></tr>
+    </thead>
+    <tbody id="tbody">
+    <tr><td colspan="5">데이터 로딩 중...</td></tr>
+    </tbody>
+</table>
+
+<!-- [G] 수정 -->
+<h2>수정</h2>
+<div class="row">
+    <input id="u_sno"  type="number" inputmode="numeric" step="1" placeholder="sno" />
+    <input id="u_kor"  type="number" inputmode="numeric" step="1" placeholder="국어" />
+    <input id="u_math" type="number" inputmode="numeric" step="1" placeholder="수학" />
+    <button onclick="update()">수정</button>
+</div>
+
+<!-- [H] 점수 필터 -->
+<h2>점수 필터(이상)</h2>
+<div class="row">
+    <input id="minKor"  type="number" inputmode="numeric" step="1" placeholder="국어 최소" />
+    <input id="minMath" type="number" inputmode="numeric" step="1" placeholder="수학 최소" />
+    <button onclick="findScores()">조회</button>
+</div>
+
+<!-- [I] 배치 등록 -->
+<h2>배치 등록</h2>
+<pre id="batchSample" style="background:#f7f7f7; padding:10px; border:1px solid #eee;">
+[
+  {"name":"유재석","kor":100,"math":90},
+  {"name":"강호동","kor":70,"math":60}
+]
+  </pre>
+<div class="row">
+    <button onclick="saveAll()">위 JSON 그대로 등록</button>
+</div>
+
+<!-- [J] 스크립트 -->
+<script src="./day05.js"></script>
+</body>
+</html>

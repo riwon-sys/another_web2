@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- ✅ namespace = 인터페이스 FQN과 100% 일치 -->
+<mapper namespace="example.day03._03과제04.model.mapper.BoardMapper">
+
+    <!-- [C] 글쓰기: 생성된 PK를 DTO.bno에 채워줌 -->
+    <insert id="save"
+            parameterType="example.day03._03과제04.model.dto.BoardDto"
+            useGeneratedKeys="true" keyProperty="bno">
+        INSERT INTO day03board (title, content)
+        VALUES (#{title}, #{content})
+    </insert>
+
+    <!-- [R] 전체조회 -->
+    <select id="findAll"
+            resultType="example.day03._03과제04.model.dto.BoardDto">
+        SELECT bno, title, content
+        FROM day03board
+        ORDER BY bno DESC
+    </select>
+
+    <!-- [R] 개별조회 -->
+    <select id="findById"
+            parameterType="int"
+            resultType="example.day03._03과제04.model.dto.BoardDto">
+        SELECT bno, title, content
+        FROM day03board
+        WHERE bno = #{bno}
+    </select>
+
+    <!-- [U] 수정 -->
+    <update id="update"
+            parameterType="example.day03._03과제04.model.dto.BoardDto">
+        UPDATE day03board
+        SET title = #{title},
+            content = #{content}
+        WHERE bno = #{bno}
+    </update>
+
+    <!-- [D] 삭제 -->
+    <delete id="deleteById" parameterType="int">
+        DELETE FROM day03board
+        WHERE bno = #{bno}
+    </delete>
+
+</mapper>

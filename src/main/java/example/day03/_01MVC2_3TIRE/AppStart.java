@@ -4,7 +4,7 @@
 // - 프로젝트 전체의 진입점(Entry Point) 역할
 // ========================================================================
 
-package example.day03._MVC2_3TIRE;
+package example.day03._01MVC2_3TIRE;
 // 현재 클래스가 위치한 패키지 경로
 // - example: 루트 패키지
 // - day03: 학습일 기준 day03

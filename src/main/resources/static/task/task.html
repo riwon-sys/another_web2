@@ -1,0 +1,58 @@
+<!-- =======================================================================================
+    [과제05] 게시판 단일 화면 (분리 버전: task.html + task.js) | rw 25-09-24 생성
+    - 정적 리소스 경로: /task/task.html
+    - 가이드 준수: fetch 대신 axios 사용
+    - 엔드포인트:
+        POST   /spring/task/board
+        GET    /spring/task/board
+        GET    /spring/task/board/view?bno=1
+        PUT    /spring/task/board
+        DELETE /spring/task/board?bno=1
+======================================================================================= -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>과제05 - 게시판</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        table { border-collapse: collapse; width: 760px; margin-top: 12px; }
+        th, td { border: 1px solid #ddd; padding: 8px; }
+        thead th { background: #f5f5f5; }
+        .row-actions button { margin: 0 4px; }
+        .form-row { margin-bottom: 8px; }
+        #viewBox { border:1px solid #eee; padding:12px; width:736px; margin-top:12px; display:none; }
+    </style>
+</head>
+<body>
+<h2>📝 과제05 - 게시판</h2>
+
+<!-- 글쓰기 -->
+<div class="form-row">제목 : <input type="text" id="title" style="width:420px"></div>
+<div class="form-row">내용 : <input type="text" id="content" style="width:420px"></div>
+<button type="button" onclick="writePost()">글쓰기</button>
+
+<!-- 목록 -->
+<table>
+    <thead>
+    <tr><th style="width:70px">번호</th><th>제목</th><th style="width:220px">비고</th></tr>
+    </thead>
+    <tbody id="listBody"><tr><td colspan="3">로딩 중…</td></tr></tbody>
+</table>
+
+<!-- 상세 -->
+<div id="viewBox">
+    <h3 id="v-title"></h3>
+    <div id="v-content" style="margin-top:6px;"></div>
+    <div style="margin-top:8px;">
+        <button id="btnEdit">수정</button>
+        <button id="btnClose">닫기</button>
+    </div>
+</div>
+
+<!-- axios (가이드: fetch 금지) -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!-- 분리된 스크립트 -->
+<script src="task.js"></script>
+</body>
+</html>

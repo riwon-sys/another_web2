@@ -1,0 +1,65 @@
+<!-- =======================================================================================
+✅ [Day04/Frontend] 학생 점수 CRUD 화면 (정적 파일)
+fs) 백엔드 REST 엔드포인트 : /day04/student
+fe) 이 페이지는 정적 리소스이므로 http://localhost:8080/day04/day04.html 로 접근합니다.
+    - 코드 파일 경로   : src/main/resources/static/day04/day04.html
+    - 배포 리소스 경로 : build/resources/main/static/day04/day04.html
+======================================================================================= -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>Day04 - 학생 점수 관리</title>
+    <style>
+        /* [선택] 보기 좋은 정도의 간단 스타일 */
+        body { font-family: ui-sans-serif, system-ui, Arial; padding: 20px; }
+        table { border-collapse: collapse; width: 560px; margin-top: 12px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        thead th { background: #f5f5f5; }
+        .row-actions button { margin: 0 4px; }
+        .form-row { margin-bottom: 8px; }
+        .hint { color:#777; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+<!-- fs) 파일/접근 경로 안내 -->
+<h3>코드 파일 경로 : C:\Users\aural\IdeaProjects\another_web2\src\main\resources\static\day04\day04.html</h3>
+<h3>배포 HTTP 경로 : <span class="hint">http://localhost:8080/day04/day04.html</span></h3>
+
+<h2>🧪 Day04 실습 - 학생 점수 CRUD</h2>
+
+<!-- ===================================================================================
+✅ [1]. 등록 폼
+fe) 사용자 입력 → onSave() 에서 axios.post('/day04/student', {name, kor, math})
+=================================================================================== -->
+<div class="form-row">학생명 : <input type="text" class="name" placeholder="예) 유재석" /></div>
+<div class="form-row">국어점수 : <input type="number" class="kor" placeholder="0~100" /></div>
+<div class="form-row">수학점수 : <input type="number" class="math" placeholder="0~100" /></div>
+<button type="button" onclick="onSave()">등록</button>
+<span class="hint">※ 점수는 0~100 사이 정수 권장</span>
+
+<!-- ===================================================================================
+✅ [2]. 목록 테이블
+fs) GET /day04/student 응답을 렌더링
+=================================================================================== -->
+<table>
+    <thead>
+    <tr>
+        <th>학생명</th>
+        <th>국어</th>
+        <th>수학</th>
+        <th>비고</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- fe) 최초 더미 한 줄은 필요 없음. onFindAll()이 로드 후 즉시 채움 -->
+    </tbody>
+</table>
+
+<!-- axios (본인 JS보다 위에서 로드) -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!-- 본문 스크립트 -->
+<script src="day04.js"></script>
+</body>
+</html>
